@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kun Lap Ming (MM)</title>
+<meta name="description" content="Kun Lap Ming, known as MM. Economics at HKUST. Cofounder of Phantom Studio and Phantom University. Builds open source AI skills and tools.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kun Lap Ming (MM)">
+<meta property="og:description" content="Economics at HKUST. Cofounder of Phantom Studio and Phantom University. Open source AI skills and tools.">
+<!-- TODO: og:image (1200x630) once the site has a public URL -->
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0c0b0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0b0f'/%3E%3Cpath d='M16 3 L18.6 13.4 L29 16 L18.6 18.6 L16 29 L13.4 18.6 L3 16 L13.4 13.4 Z' fill='%23a58bff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0b0f;
+  --bg-2:#131118;
+  --ink:#ece6da;
+  --ink-2:#a9a29a;
+  --ink-3:#6c6670;
+  --rule:rgba(236,230,218,.12);
+  --accent:#a58bff;
+  --accent-soft:rgba(165,139,255,.14);
+  --serif:"Instrument Serif", "Times New Roman", serif;
+  --sans:"Inter Tight", system-ui, -apple-system, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  --gutter:clamp(16px, 5vw, 72px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#f2ede3; --bg-2:#e9e3d6; --ink:#16141a; --ink-2:#4e4952; --ink-3:#8a848c;
+    --rule:rgba(22,20,26,.14); --accent:#5b3fd1; --accent-soft:rgba(91,63,209,.10);
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f2ede3; --bg-2:#e9e3d6; --ink:#16141a; --ink-2:#4e4952; --ink-3:#8a848c;
+  --rule:rgba(22,20,26,.14); --accent:#5b3fd1; --accent-soft:rgba(91,63,209,.10);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:var(--bg)}
+:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
+
+/* film grain */
+body::after{
+  content:"";position:fixed;inset:-50%;pointer-events:none;z-index:50;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* top progress hairline */
+.progress{position:fixed;top:0;left:0;height:1px;width:100%;background:var(--accent);
+  transform-origin:0 50%;transform:scaleX(0);z-index:60}
+
+/* header */
+.top{
+  position:fixed;inset:0 0 auto 0;z-index:40;display:flex;justify-content:space-between;align-items:center;
+  padding:20px var(--gutter);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);mix-blend-mode:difference;
+}
+.top a{color:#ece6da}
+.top nav{display:flex;gap:28px}
+.top .clock{color:#ece6da}
+@media (max-width:720px){.top nav{display:none}}
+
+/* the crystal star, signature motif */
+.star-wrap{
+  position:fixed;top:50%;right:calc(var(--gutter) * -1 + -8vw);width:min(78vw,820px);aspect-ratio:1;
+  transform:translateY(-50%);pointer-events:none;z-index:0;opacity:.9;
+}
+.star{width:100%;height:100%;will-change:transform}
+.star path, .star circle, .star line{fill:none;stroke:var(--accent);vector-effect:non-scaling-stroke}
+.star .faint{stroke-opacity:.18}
+.star .mid{stroke-opacity:.38}
+.star .core{fill:var(--accent);fill-opacity:.06;stroke-opacity:.7}
+@media (max-width:720px){.star-wrap{width:120vw;right:-55vw;opacity:.55}}
+
+main{position:relative;z-index:1}
+section{padding:0 var(--gutter)}
+
+/* hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:9vh;padding-top:120px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin:0 0 28px}
+.eyebrow b{color:var(--accent);font-weight:400}
+.name{
+  font-family:var(--serif);font-weight:400;margin:0;line-height:.86;letter-spacing:-.02em;
+  font-size:clamp(64px, 15.5vw, 248px);
+}
+.name .line{display:block;overflow:hidden;padding-bottom:.16em;margin-bottom:-.12em}
+.name .line > span{display:inline-block;transform:translateY(105%);transition:transform 1.4s var(--ease)}
+.name em{font-style:italic;color:var(--accent)}
+.loaded .name .line > span{transform:none}
+.loaded .name .line:nth-child(2) > span{transition-delay:.12s}
+.aka{display:flex;align-items:baseline;gap:18px;margin:22px 0 0;opacity:0;transform:translateY(14px);transition:opacity 1.2s var(--ease) .5s,transform 1.2s var(--ease) .5s}
+.loaded .aka{opacity:1;transform:none}
+.aka-k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.aka-v{font-family:var(--serif);font-style:italic;font-size:clamp(40px,5.5vw,84px);line-height:1;color:var(--ink);border-bottom:1px solid var(--accent);padding:0 .08em .04em}
+.hero-foot{
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end;
+  margin-top:5vh;border-top:1px solid var(--rule);padding-top:22px;
+}
+.lede{font-size:clamp(18px,1.6vw,22px);line-height:1.5;max-width:34ch;margin:0;color:var(--ink)}
+.lede i{font-family:var(--serif);font-size:1.15em;color:var(--accent)}
+.scrollcue{justify-self:end;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:14px}
+.scrollcue::after{content:"";width:1px;height:46px;background:linear-gradient(var(--ink-3),transparent);animation:drip 2.4s var(--ease) infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:720px){.hero-foot{grid-template-columns:1fr}.scrollcue{display:none}.name{font-size:25vw}}
+
+/* section heads */
+.chapter{padding-top:22vh}
+.head{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;align-items:baseline;border-top:1px solid var(--rule);padding-top:22px;margin-bottom:64px}
+.num{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--accent)}
+.head h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,92px);line-height:.95;margin:0;letter-spacing:-.015em}
+.head h2 em{color:var(--ink-2)}
+@media (max-width:720px){.head{grid-template-columns:1fr;gap:10px;margin-bottom:40px}}
+
+/* what I build: editorial rows */
+.ventures{list-style:none;margin:0;padding:0}
+.venture{display:grid;grid-template-columns:120px minmax(0,1.1fr) minmax(0,1fr);gap:24px;padding:38px 0;border-bottom:1px solid var(--rule)}
+.venture .when{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--ink-3);padding-top:12px}
+.venture h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.6vw,52px);line-height:1;margin:0}
+.venture h3 small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-top:14px}
+.venture p{margin:6px 0 0;color:var(--ink-2);max-width:42ch}
+@media (max-width:720px){.venture{grid-template-columns:1fr;gap:12px;padding:30px 0}.venture .when{padding:0}}
+
+/* selected work: index list */
+.work{list-style:none;margin:0;padding:0;counter-reset:w}
+.work li{border-bottom:1px solid var(--rule)}
+.work a{
+  position:relative;display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:24px;align-items:center;
+  padding:30px 0;transition:padding .6s var(--ease), color .4s;
+}
+.work a::before{
+  content:"";position:absolute;inset:0;background:var(--accent-soft);transform:scaleY(0);transform-origin:bottom;
+  transition:transform .6s var(--ease);z-index:-1;
+}
+.work .idx{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-3)}
+.work .title{font-family:var(--serif);font-size:clamp(26px,3.2vw,46px);line-height:1.05;display:block}
+.work .desc{display:block;color:var(--ink-2);font-size:15.5px;margin-top:10px;max-width:60ch}
+.work .meta{display:flex;align-items:center;gap:18px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.arrow{width:42px;height:42px;border:1px solid var(--rule);border-radius:50%;display:grid;place-items:center;transition:transform .6s var(--ease),background .4s,border-color .4s}
+.arrow svg{width:14px;height:14px;stroke:currentColor;fill:none}
+@media (hover:hover){
+  .work a:hover{padding-left:20px;padding-right:20px}
+  .work a:hover::before{transform:scaleY(1)}
+  .work a:hover .arrow{transform:rotate(-45deg);background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .work a:hover .idx{color:var(--accent)}
+}
+@media (max-width:720px){
+  .work a{grid-template-columns:1fr auto;gap:14px}
+  .work .idx{grid-column:1 / -1}
+  .work .meta .lang{display:none}
+}
+
+/* how I work */
+.manifesto{font-family:var(--serif);font-size:clamp(30px,4.2vw,64px);line-height:1.12;letter-spacing:-.01em;max-width:20ch;margin:0 0 0 calc(120px + 24px)}
+.manifesto em{color:var(--accent)}
+.manifesto .dim{color:var(--ink-3)}
+.method{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:90px 0 0 calc(120px + 24px);border-top:1px solid var(--rule)}
+.method div{padding:24px 24px 0 0}
+.method div + div{padding-left:24px;border-left:1px solid var(--rule)}
+.method .num{display:block;margin-bottom:12px}
+.method h4{font-family:var(--serif);font-weight:400;font-size:26px;margin:0 0 8px}
+.method p{margin:0;color:var(--ink-2);font-size:15px}
+@media (max-width:900px){
+  .manifesto,.method{margin-left:0}
+  .method{grid-template-columns:1fr 1fr}
+  .method div:nth-child(3){padding-left:0;border-left:0}
+  .method div{padding-bottom:28px}
+}
+@media (max-width:520px){
+  .method{grid-template-columns:1fr}
+  .method div,.method div + div{padding-left:0;border-left:0}
+}
+
+/* credentials */
+.creds{display:grid;grid-template-columns:120px repeat(3,minmax(0,1fr));gap:24px}
+.cred{border-top:1px solid var(--ink);padding-top:20px}
+.cred .org{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.cred h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.4vw,34px);line-height:1.1;margin:14px 0 10px}
+.cred p{margin:0;color:var(--ink-3);font-family:var(--mono);font-size:12px;letter-spacing:.06em}
+@media (max-width:900px){.creds{grid-template-columns:1fr}.creds > span{display:none}}
+
+/* contact */
+.contact{padding-bottom:10vh}
+.big{
+  font-family:var(--serif);font-size:clamp(56px,13vw,210px);line-height:.9;letter-spacing:-.02em;margin:0 0 70px;
+}
+.big em{color:var(--accent)}
+.links{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--rule)}
+.links li + li{border-left:1px solid var(--rule)}
+.links a{display:flex;flex-direction:column;gap:10px;padding:26px 22px 30px;transition:background .5s var(--ease)}
+.links li:first-child a{padding-left:0}
+.links .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.links .v{font-family:var(--serif);font-size:clamp(22px,2.2vw,30px);line-height:1.1;word-break:break-word}
+.links .v::after{content:" \2197";font-family:var(--sans);font-size:.6em;color:var(--accent);vertical-align:super}
+@media (hover:hover){.links a:hover{background:var(--accent-soft)}.links li:first-child a:hover{padding-left:22px}}
+@media (max-width:900px){
+  .links{grid-template-columns:1fr 1fr}
+  .links li:nth-child(3){border-left:0}
+  .links li:nth-child(n+3){border-top:1px solid var(--rule)}
+  .links li:first-child a{padding-left:0}
+  .links li:nth-child(3) a{padding-left:0}
+}
+@media (max-width:520px){
+  .links{grid-template-columns:1fr}
+  .links li + li{border-left:0;border-top:1px solid var(--rule)}
+  .links a{padding-left:0}
+}
+
+footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:28px var(--gutter) 34px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);position:relative;z-index:1}
+footer button{all:unset;cursor:pointer;color:var(--ink-2)}
+footer button:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
+
+/* scroll reveals */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+/* cursor halo (fine pointers only) */
+.halo{position:fixed;top:0;left:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--accent);
+  pointer-events:none;z-index:70;opacity:.85;transition:width .4s var(--ease),height .4s var(--ease),margin .4s var(--ease);display:none}
+.halo.big{width:56px;height:56px;margin:-28px 0 0 -28px;opacity:.25}
+@media (hover:hover) and (pointer:fine){.halo{display:block}}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+  .name .line > span{transform:none}
+  .halo{display:none !important}
+}
+</style>
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<div class="halo" aria-hidden="true"></div>
+
+<header class="top">
+  <a href="#top" aria-label="MM, back to top">MM</a>
+  <nav aria-label="Sections">
+    <a href="#build">Build</a>
+    <a href="#work">Work</a>
+    <a href="#method">Method</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <span class="clock" aria-label="Local time in Hong Kong">HKG <span id="clock">--:--</span></span>
+</header>
+
+<div class="star-wrap" aria-hidden="true">
+  <svg class="star" id="star" viewBox="-100 -100 200 200">
+    <circle class="faint" r="96"/>
+    <circle class="faint" r="70"/>
+    <circle class="faint" r="44"/>
+    <line class="faint" x1="-100" y1="0" x2="100" y2="0"/>
+    <line class="faint" x1="0" y1="-100" x2="0" y2="100"/>
+    <line class="faint" x1="-70.7" y1="-70.7" x2="70.7" y2="70.7"/>
+    <line class="faint" x1="-70.7" y1="70.7" x2="70.7" y2="-70.7"/>
+    <path class="mid" d="M0 -92 L16 -16 L92 0 L16 16 L0 92 L-16 16 L-92 0 L-16 -16 Z"/>
+    <path class="mid" d="M0 -60 L11 -11 L60 0 L11 11 L0 60 L-11 11 L-60 0 L-11 -11 Z" transform="rotate(45)"/>
+    <path class="core" d="M0 -34 L7 -7 L34 0 L7 7 L0 34 L-7 7 L-34 0 L-7 -7 Z"/>
+    <path class="mid" d="M0 -34 L0 34 M-34 0 L34 0"/>
+  </svg>
+</div>
+
+<main id="top">
+
+  <section class="hero">
+    <p class="eyebrow">Hong Kong <b>·</b> HKUST Economics <b>·</b> Founder</p>
+    <h1 class="name" aria-label="Kun Lap Ming, known as MM">
+      <span class="line"><span>Kun Lap</span></span>
+      <span class="line"><span><em>Ming</em>.</span></span>
+    </h1>
+    <p class="aka"><span class="aka-k">Known as</span> <span class="aka-v">MM</span></p>
+    <div class="hero-foot">
+      <p class="lede">An economics student who builds with AI. I run a content studio, teach AI in plain words, and publish the tools I make for <i>my own</i> week.</p>
+      <span class="scrollcue">Scroll</span>
+    </div>
+  </section>
+
+  <section class="chapter" id="build">
+    <div class="head reveal"><span class="num">01 / Build</span><h2>Three things, <em>one thread.</em></h2></div>
+    <ul class="ventures">
+      <li class="venture reveal">
+        <span class="when">JUL 2026 –</span>
+        <h3>Phantom Studio<small>Cofounder</small></h3>
+        <p>An AI powered content studio making Instagram content and workflow automation for local Hong Kong businesses. First paid client landed and delivered.</p>
+      </li>
+      <li class="venture reveal">
+        <span class="when">SEP 2026 –</span>
+        <h3>Phantom University<small>Cofounder</small></h3>
+        <p>The education arm of the studio. Practical AI, taught in short English Reels by an AI avatar host we built and run.</p>
+      </li>
+      <li class="venture reveal">
+        <span class="when">2026 –</span>
+        <h3>Open source AI tools<small>8 public repositories</small></h3>
+        <p>Skills and agents that make an AI ask better questions, check its own answers and plan before it acts. Each one started as a problem in my own week.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="chapter" id="work">
+    <div class="head reveal"><span class="num">02 / Work</span><h2>Selected <em>repositories.</em></h2></div>
+    <ul class="work">
+      <li class="reveal"><a href="https://github.com/klmiing1229-a11y/Rough_Idea_To_Pro_Prompt" target="_blank" rel="noopener">
+        <span class="idx">01 · SKILL</span>
+        <span><span class="title">Rough Idea to Pro Prompt</span><span class="desc">Turns a rough request into a production ready prompt, waits for approval, then runs it. Works across AI models.</span></span>
+        <span class="meta"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span></span>
+      </a></li>
+      <li class="reveal"><a href="https://github.com/klmiing1229-a11y/AI_Answer_Fact_Checker" target="_blank" rel="noopener">
+        <span class="idx">02 · SKILL</span>
+        <span><span class="title">AI Answer Fact Checker</span><span class="desc">Lists the claims in an AI answer that could be wrong, rates each one's risk, and says exactly where to check it.</span></span>
+        <span class="meta"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span></span>
+      </a></li>
+      <li class="reveal"><a href="https://github.com/klmiing1229-a11y/Vague_Goal_To_Clear_Plan" target="_blank" rel="noopener">
+        <span class="idx">03 · SKILL</span>
+        <span><span class="title">Vague Goal to Clear Plan</span><span class="desc">Turns a vague wish into a scoped brief with a definition of done, after at most five short questions.</span></span>
+        <span class="meta"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span></span>
+      </a></li>
+      <li class="reveal"><a href="https://github.com/klmiing1229-a11y/Out_Of_The_Box_Idea_Generator" target="_blank" rel="noopener">
+        <span class="idx">04 · SKILL</span>
+        <span><span class="title">Out of the Box Idea Generator</span><span class="desc">Lists the obvious answers first, breaks the hidden assumptions in a problem, then returns ideas that each come with a cheap test.</span></span>
+        <span class="meta"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span></span>
+      </a></li>
+      <li class="reveal"><a href="https://github.com/klmiing1229-a11y/AI_Daily_Accountability_Secretary" target="_blank" rel="noopener">
+        <span class="idx">05 · SKILL</span>
+        <span><span class="title">AI Daily Accountability Secretary</span><span class="desc">Report your day, get ON TRACK, MIXED or DRIFTED against your own goals, a seven day scoreboard and one nudge for tomorrow.</span></span>
+        <span class="meta"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span></span>
+      </a></li>
+      <li class="reveal"><a href="https://github.com/klmiing1229-a11y/Investing_Agent" target="_blank" rel="noopener">
+        <span class="idx">06 · AGENT · PYTHON</span>
+        <span><span class="title">Investing Agent</span><span class="desc">“Is it a good time to buy?” answered as a timing checklist for stocks, ETFs and crypto. Conditions, never a verdict.</span></span>
+        <span class="meta"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span></span>
+      </a></li>
+      <li class="reveal"><a href="https://github.com/klmiing1229-a11y/Resume_Builder" target="_blank" rel="noopener">
+        <span class="idx">07 · PROMPT</span>
+        <span><span class="title">Resume Builder</span><span class="desc">One prompt for any AI that scans a resume, asks a few questions and rebuilds it as one clean page. Never invents facts.</span></span>
+        <span class="meta"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span></span>
+      </a></li>
+      <li class="reveal"><a href="https://github.com/klmiing1229-a11y/Mac_Desktop_Productivity_Widget" target="_blank" rel="noopener">
+        <span class="idx">08 · MACOS APP · SWIFT</span>
+        <span><span class="title">Mac Desktop Productivity Widget</span><span class="desc">A free macOS widget: news, calendar reminders, an hour tracker and a quick copy vault. No AI, no account, no tracking.</span></span>
+        <span class="meta"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 14 14"><path d="M2 7h10M8 3l4 4-4 4"/></svg></span></span>
+      </a></li>
+    </ul>
+  </section>
+
+  <section class="chapter" id="method">
+    <div class="head reveal"><span class="num">03 / Method</span><h2>How I <em>work.</em></h2></div>
+    <p class="manifesto reveal">I don't come from computer science. <span class="dim">I build by directing AI:</span> I write the brief, set the rules, test what comes back and <em>keep only what works.</em></p>
+    <div class="method">
+      <div class="reveal"><span class="num">I</span><h4>Brief</h4><p>Say exactly what done looks like before anything gets built.</p></div>
+      <div class="reveal d1"><span class="num">II</span><h4>Rules</h4><p>Hard limits the model must keep: what it never claims, never sends, never invents.</p></div>
+      <div class="reveal d2"><span class="num">III</span><h4>Test</h4><p>Run it on my real week and check every output against the brief.</p></div>
+      <div class="reveal d3"><span class="num">IV</span><h4>Publish</h4><p>Write it up plainly so anyone can use it, in any AI.</p></div>
+    </div>
+  </section>
+
+  <section class="chapter" id="credentials">
+    <div class="head reveal"><span class="num">04 / Record</span><h2>Study &amp; <em>credentials.</em></h2></div>
+    <div class="creds">
+      <span></span>
+      <div class="cred reveal"><span class="org">HKUST</span><h3>BBA in Economics</h3><p>The Hong Kong University of Science and Technology</p></div>
+      <div class="cred reveal d1"><span class="org">Anthropic</span><h3>AI Fluency: Framework &amp; Foundations</h3><p>Sep 2026</p></div>
+      <div class="cred reveal d2"><span class="org">Google</span><h3>Introduction to Generative AI</h3><p>Sep 2026</p></div>
+    </div>
+  </section>
+
+  <section class="chapter contact" id="contact">
+    <div class="head reveal"><span class="num">05 / Contact</span><h2>Find me <em>here.</em></h2></div>
+    <p class="big reveal">Let's <em>talk.</em></p>
+    <ul class="links">
+      <li class="reveal"><a href="https://github.com/klmiing1229-a11y" target="_blank" rel="noopener"><span class="k">GitHub</span><span class="v">klmiing1229-a11y</span></a></li>
+      <li class="reveal d1"><a href="https://www.linkedin.com/in/kunlapming" target="_blank" rel="noopener"><span class="k">LinkedIn</span><span class="v">kunlapming</span></a></li>
+      <li class="reveal d2"><a href="https://www.instagram.com/phantom_university/" target="_blank" rel="noopener"><span class="k">Phantom University</span><span class="v">@phantom_university</span></a></li>
+      <li class="reveal d3"><a href="https://www.instagram.com/pha.ntom_studio/" target="_blank" rel="noopener"><span class="k">Phantom Studio</span><span class="v">@pha.ntom_studio</span></a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <span>© 2026 Kun Lap Ming · MM</span>
+  <span>Built by directing AI</span>
+  <button type="button" id="theme" aria-label="Switch colour theme">Light / Dark</button>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  requestAnimationFrame(function(){document.body.classList.add('loaded')});
+
+  // theme toggle (remembered per viewer when storage allows)
+  try{var saved=localStorage.getItem('klm-theme');if(saved)root.setAttribute('data-theme',saved);}catch(e){}
+  document.getElementById('theme').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+    var next=cur==='light'?'dark':'light';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('klm-theme',next);}catch(e){}
+  });
+
+  // Hong Kong clock
+  var clock=document.getElementById('clock');
+  function tick(){
+    try{clock.textContent=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Hong_Kong',hour:'2-digit',minute:'2-digit'}).format(new Date());}catch(e){}
+  }
+  tick();setInterval(tick,15000);
+
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // reveals
+  var els=document.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('in')});}
+  else{
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    els.forEach(function(el){io.observe(el)});
+  }
+
+  // scroll: progress line + star rotation
+  var bar=document.querySelector('.progress'),star=document.getElementById('star'),ticking=false;
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-innerHeight,p=h>0?scrollY/h:0;
+    bar.style.transform='scaleX('+p+')';
+    if(!reduce)star.style.transform='rotate('+(p*180)+'deg) scale('+(1-p*.18)+')';
+    ticking=false;
+  }
+  addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});
+  onScroll();
+
+  // cursor halo
+  var halo=document.querySelector('.halo');
+  if(!reduce&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var x=innerWidth/2,y=innerHeight/2,hx=x,hy=y;
+    addEventListener('mousemove',function(e){x=e.clientX;y=e.clientY},{passive:true});
+    (function loop(){hx+=(x-hx)*.18;hy+=(y-hy)*.18;halo.style.transform='translate('+hx+'px,'+hy+'px)';requestAnimationFrame(loop)})();
+    document.querySelectorAll('a,button').forEach(function(a){
+      a.addEventListener('mouseenter',function(){halo.classList.add('big')});
+      a.addEventListener('mouseleave',function(){halo.classList.remove('big')});
+    });
+  }
+})();
+</script>
+</body>
+</html>
