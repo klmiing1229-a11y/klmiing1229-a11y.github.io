@@ -154,6 +154,10 @@ section{padding:0 var(--gutter)}
 .venture h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.6vw,52px);line-height:1;margin:0}
 .venture h3 small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-top:14px}
 .venture p{margin:6px 0 0;color:var(--ink-2);max-width:42ch}
+.venture{position:relative;overflow:hidden}
+.venture::after{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .7s var(--ease)}
+.venture.open::after,.venture:hover::after,.venture:focus-visible::after{transform:scaleY(1)}
+.venture::before{content:"OPEN ↗";position:absolute;right:12px;top:12px;font:10px var(--mono);letter-spacing:.14em;color:var(--accent);opacity:.65}
 @media (max-width:720px){.venture{grid-template-columns:1fr;gap:12px;padding:30px 0}.venture .when{padding:0}}
 
 /* selected work: index list */
@@ -223,6 +227,14 @@ section{padding:0 var(--gutter)}
   font-family:var(--serif);font-size:clamp(56px,13vw,210px);line-height:.9;letter-spacing:-.02em;margin:0 0 70px;
 }
 .big em{color:var(--accent)}
+.contact .head{position:relative}
+.contact .head::after{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease)}
+.contact .head.in::after{transform:scaleX(1)}
+.contact .big{position:relative;display:inline-block;text-shadow:0 0 50px var(--accent-soft);transition:transform .8s var(--ease),text-shadow .8s var(--ease)}
+.contact .big.in{transform:translateX(clamp(0px,4vw,56px));text-shadow:0 0 90px var(--accent-soft)}
+.contact .links a{position:relative;overflow:hidden}
+.contact .links a::before{content:"";position:absolute;inset:auto 0 0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease)}
+.contact .links a:hover::before,.contact .links a:focus-visible::before{transform:scaleX(1)}
 .links{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--rule)}
 .links li + li{border-left:1px solid var(--rule)}
 .links a{display:flex;flex-direction:column;gap:10px;padding:26px 22px 30px;transition:background .5s var(--ease),transform .45s var(--ease)}
@@ -292,6 +304,22 @@ footer button:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
   .name .line > span{transform:none}
   .halo,.trail,.stamps,.constellation,.idle-cue,.theme-wipe,.stamp,.tap-ripple{display:none !important}
 }
+.entrance{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.entrance a{border:1px solid var(--rule);padding:22px;display:flex;justify-content:space-between;align-items:center;background:var(--bg-2);transition:background .4s,transform .4s;font-family:var(--mono);font-size:12px}
+.entrance a:hover,.entrance a:focus-visible{background:var(--accent-soft);transform:translateY(-5px)}
+.entrance b{font:32px var(--serif);color:var(--accent)}
+.work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.work li{border:1px solid var(--rule);background:var(--bg-2);overflow:hidden;border-radius:100px 100px 4px 4px}
+.room-toggle{width:100%;min-height:260px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:22px;padding:40px 25px;background:linear-gradient(135deg,var(--accent-soft),transparent);border:0;border-bottom:1px solid var(--rule);color:var(--ink);font:38px var(--serif);cursor:pointer;perspective:800px;text-align:center}
+.room-toggle::before{content:'';position:absolute;inset:18px;border:1px solid var(--rule);border-radius:85px 85px 0 0;pointer-events:none;transform-origin:left;transition:transform .7s var(--ease),background .7s}
+.room-toggle:hover::before,.room-toggle[aria-expanded=true]::before{transform:rotateY(-35deg);background:var(--accent-soft)}
+.room-toggle span{position:relative;max-width:20ch}.room-toggle small{font:10px var(--mono);letter-spacing:.16em;color:var(--accent)}
+.work a{grid-template-columns:1fr auto;padding:28px!important}.work .idx{grid-column:1/-1}.work .title{font-size:28px}.work a[hidden]{display:none}
+.contact{position:relative;margin-top:15vh;padding-top:15vh;background:radial-gradient(ellipse at 50% 100%,var(--accent-soft),transparent 70%);border-top:1px solid var(--rule)}
+.contact::before{content:'THE NEXT CHAPTER';display:block;font:11px var(--mono);letter-spacing:.25em;color:var(--accent);margin-bottom:50px}
+.contact .links{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:720px){.entrance{grid-template-columns:1fr}.work{grid-template-columns:1fr}.room-toggle{min-height:230px}.contact .links{grid-template-columns:1fr}.contact .links li{border-left:0}.contact .big.in{transform:none}}
+@media(prefers-reduced-motion:reduce){.room-toggle::before{transform:none!important}}
 </style>
 </head>
 <body>
@@ -344,8 +372,13 @@ footer button:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
     <p class="aka"><span class="aka-k">Known as</span> <span class="aka-v">MM</span></p>
     <div class="hero-foot">
       <p class="lede">An economics student who builds with AI. I teach AI in plain words, I'm moving into AI training, and I publish the tools I make for <i>my own</i> week. Outside class, I'm teaching myself finance.</p>
-      <span class="scrollcue">Scroll</span>
+      <a class="scrollcue" href="#work">Enter the work ↘</a>
     </div>
+    <nav class="entrance" aria-label="Choose a chapter">
+      <a href="#build"><span>01 / What I build</span><b>↗</b></a>
+      <a href="#work"><span>02 / Open the projects</span><b>↗</b></a>
+      <a href="#contact"><span>03 / Find me here</span><b>↗</b></a>
+    </nav>
   </section>
 
   <section class="chapter" id="build" data-chapter="build">
@@ -353,19 +386,19 @@ footer button:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
     <ul class="ventures">
       <li class="venture reveal" tabindex="0">
         <span class="when">NOV 2026 –</span>
-        <h3>Stusy<small>Founder</small></h3>
+        <h3>Stusy<small>Founder · open the door</small></h3>
         <p>I am building Stusy, a study community that turns coursework into clearer weekly plans through educational manga style posts and a WhatsApp community. The near term goal is 200 members before April 2027, then a real website before September 2027.</p>
         <p class="more">Three educational posts a week, and I own the AI video edit pipeline.</p>
       </li>
       <li class="venture reveal" tabindex="0">
         <span class="when">2026 –</span>
-        <h3>AI training<small>Focus</small></h3>
+        <h3>AI training<small>Focus · open the door</small></h3>
         <p>Writing and reviewing the prompts and answers that AI models learn from. It's the work I'm moving into next, and it starts from how I already test my own agents.</p>
         <p class="more">It is the work I want to do for a living, not a side hobby.</p>
       </li>
       <li class="venture reveal" tabindex="0">
         <span class="when">2026 –</span>
-        <h3>Open source AI tools<small>8 public repositories</small></h3>
+        <h3>Open source AI tools<small>8 public repositories · open the door</small></h3>
         <p>Skills and agents that make an AI ask better questions, check its own answers and plan before it acts. Each one started as a problem in my own week.</p>
         <p class="more">Eight public repositories, each named after a problem I actually hit.</p>
       </li>
@@ -457,7 +490,8 @@ footer button:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
   <button type="button" id="theme" aria-label="Switch colour theme">Light / Dark</button>
 </footer>
 
-<script>
+<script src="rooms.js"></script>
+<script type="text/plain">
 (function(){
   var root=document.documentElement;
   var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
@@ -538,8 +572,14 @@ footer button:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
   onScroll();
 
   document.querySelectorAll('.venture').forEach(function(card){
-    card.addEventListener('click',function(){ card.classList.toggle('open'); });
-    card.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); card.classList.toggle('open'); }});
+    card.setAttribute('role','button');
+    card.setAttribute('aria-expanded','false');
+    function toggleCard(){
+      var open=card.classList.toggle('open');
+      card.setAttribute('aria-expanded',String(open));
+    }
+    card.addEventListener('click',toggleCard);
+    card.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleCard(); }});
   });
 
   var method=document.querySelector('.method');
@@ -705,6 +745,18 @@ footer button:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
     requestAnimationFrame(loop);
   })();
 })();
+</script>
+<script>
+document.querySelectorAll('.work li').forEach(function(room,i){
+  var link=room.querySelector('a');
+  var button=document.createElement('button');button.type='button';button.className='room-toggle';
+  var title=document.createElement('span');title.textContent=link.querySelector('.title').textContent;
+  var label=document.createElement('small');label.textContent='ROOM '+String(i+1).padStart(2,'0')+' / OPEN ↗';
+  button.appendChild(label);button.appendChild(title);
+  link.id='project-room-'+i;button.setAttribute('aria-controls',link.id);button.setAttribute('aria-expanded','false');
+  link.hidden=true;room.insertBefore(button,link);
+  button.addEventListener('click',function(){var open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));link.hidden=!open;label.textContent='ROOM '+String(i+1).padStart(2,'0')+(open?' / CLOSE −':' / OPEN ↗');});
+});
 </script>
 </body>
 </html>
